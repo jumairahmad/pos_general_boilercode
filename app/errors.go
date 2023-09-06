@@ -1,1 +1,5 @@
-package errors
+package error
+
+func error() {
+
+}
