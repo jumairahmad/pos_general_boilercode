@@ -15,13 +15,13 @@ type Orders struct {
 	WarehouseID   uint      `json:"warehouse_id"`
 	Quantity      int       `json:"quantity"`
 	CustomerID    uint      `json:"customer_id"`
-	SellerID      uint      `json:"seller_id"`
+	User          User      `gorm:"foreignKey:ID" json:"user"`
 	Date          time.Time `json:"date"`
 	PricePerLiter int       `json:"price_per_liter"`
 	TotalBill     int       `json:"total_bill"`
 	Discount      int       `json:"discount"`
 	Status        string    `json:"status"`
-	ProductID     uint      `json:"product_id"`
+	Product       []Product ` gorm:"foreignKey:ID" json:"product_id"`
 	OrderNO       string    `json:"order_no"`
 }
 

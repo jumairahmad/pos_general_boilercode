@@ -17,12 +17,12 @@ type User struct {
 	UserName     string `json:"username"`
 	Password     string `json:"password"`
 	ProfileImage string `json:"profileimage"`
-	RoleId       uint   `json:"role_id"`
+	Roles        Roles  `gorm:"foreignKey:ID" json:"userroles"`
 }
 
 func (user *User) Role() Roles {
 	var roles Roles
-	Config.DB.Where("id = ?", user.RoleId).First(&roles)
+	Config.DB.Where("id = ?", user.Roles.ID).First(&roles)
 	return roles
 }
 

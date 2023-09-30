@@ -16,9 +16,9 @@ type Stock struct {
 	Date        time.Time `json:"name"`
 	RecievedBy  uint      `json:"recived_by"`
 	SellerPrice string    `json:"seller_price"`
-	WarehouseID uint      `json:"warehouse_id"`
+	Warehouse   Warehouse `gorm:"foreignKey:ID" json:"warehouse"`
 	InvoiceNo   string    `json:"invoice_no"`
-	SupplierID  uint      `json:"suppiler_id"`
+	Supplier    Supplier  `gorm:"foreignKey:ID" json:"suppiler"`
 }
 
 func (stock *Stock) TableName() string {

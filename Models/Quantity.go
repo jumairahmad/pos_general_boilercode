@@ -10,10 +10,10 @@ import (
 
 type Quantity struct {
 	gorm.Model
-	ID            uint `gorm:"primary_key" id:"id"`
-	TotalQuantity int  `json:"total_quantity"`
-	WarehouseID   uint `json:"warehouse" `
-	ProductID     uint `json:"product" `
+	ID            uint        `gorm:"primary_key" id:"id"`
+	TotalQuantity int         `json:"total_quantity"`
+	Warehouse     []Warehouse ` gorm:"foreignKey:ID" json:"warehouse" `
+	Product       []Product   `gorm:"foreignKey:ID" json:"product" `
 }
 
 func (quantity *Quantity) TableName() string {
