@@ -12,10 +12,10 @@ import (
 type Orders struct {
 	gorm.Model
 	ID            uint      `gorm:"primary_key" id:"id"`
-	WarehouseID   uint      `json:"warehouse_id"`
+	Warehouse     Warehouse `gorm:"foreignKey:ID" json:"warehouse"`
 	Quantity      int       `json:"quantity"`
-	CustomerID    uint      `json:"customer_id"`
-	User          User      `gorm:"foreignKey:ID" json:"user"`
+	Customer      User      `gorm:"foreignKey:ID" json:"customer"`
+	Seller        User      `gorm:"foreignKey:ID" json:"user"`
 	Date          time.Time `json:"date"`
 	PricePerLiter int       `json:"price_per_liter"`
 	TotalBill     int       `json:"total_bill"`
