@@ -29,6 +29,26 @@ func (orders *Orders) TableName() string {
 	return "orders"
 }
 
+func (order *Orders) getSales() int {
+	var orders []Orders
+	Config.DB.Where("id = ?", order.ID).Find(&orders)
+	TotalSales := 0
+	for _, v := range orders {
+		TotalSales += v.TotalBill
+	}
+	return 0
+}
+
+func GetAllSales() int {
+	var orders []Orders
+	Config.DB.Find(&orders)
+	TotalSales := 0
+	for _, v := range orders {
+		TotalSales += v.TotalBill
+	}
+	return TotalSales
+}
+
 func GetAllOrders(orders *[]Orders) (err error) {
 	if err = Config.DB.Find(orders).Error; err != nil {
 		return err
